@@ -18,6 +18,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+// Root route for Render deployment
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'SmartBoard API Server',
+    status: 'running',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      boards: '/api/boards',
+      lists: '/api/lists',
+      cards: '/api/cards'
+    }
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
